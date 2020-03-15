@@ -29,7 +29,7 @@ def login_view(request):
             login(request, user)
             if 'next' in request.POST:
                 return redirect(request.POST.get('next'))
-            return redirect('blogapp:article_list')
+            return redirect('/')
     else:
         form = AuthenticationForm()
 
@@ -38,6 +38,5 @@ def login_view(request):
     return render(request, 'accounts/login.html', stuff_for_frontend)
     
 def logout_view(request):
-    if request.method == 'POST':
-        logout(request)
-        return redirect('blogapp:article_list')
+    logout(request)
+    return redirect('/')

@@ -6,7 +6,7 @@
     <title>Rent a book</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'rentalapp/styles.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
 
 </head>
 
@@ -15,8 +15,19 @@
         <div class="container nav-wrapper">
             <a href="/" class="brand-logo">Rentalapp</a>
             <ul id="nav-mobile" class="right">
+                {% if user.is_authenticated %}
                 <li><a href="/">Home</a></li>
-                <li><a href="/description/">Description</a></li>
+                <li><a href="{% url 'rentalapp:description' %}">Description</a></li>
+                {% if user.is_staff %}
+                    <li><a href="{% url 'admin:index' %}">Admin panel</a></li>
+                {% endif %}
+                <li><a href="{% url 'accounts:logout' %}">Log out ({{ user.get_username }})</a></li>
+                {% else %}
+                <li><a href="{% url 'accounts:login' %}">Log in</a></li>
+                <li><a href="{% url 'accounts:signup' %}">Sign up</a></li>
+                {% endif %}
+
+                
             </ul>
         </div>
     </nav>

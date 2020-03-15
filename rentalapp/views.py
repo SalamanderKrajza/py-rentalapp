@@ -1,20 +1,18 @@
-from django.shortcuts import render
-from django.template import loader
+from django.shortcuts import render, redirect
 
 # Create your views here.
-from django.http import HttpResponse
-from .models import Book, Author
+from .models import Book, Author, Order, Action
 from .forms import SearchBooksForm
+from django.utils import timezone
 
 
 def index(request):
     """
     View which displays main page
     """
-
-    template = loader.get_template("rentalapp/index.html")
     context = {}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'rentalapp/index.html', context)
+
 
 
 
@@ -22,10 +20,8 @@ def description(request):
     """
     View which displays description page
     """
-
-    template = loader.get_template("rentalapp/description.html")
     context = {}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'rentalapp/description.html', context)
 
 def books(request):
     """
@@ -41,11 +37,8 @@ def books(request):
     else:
         form = SearchBooksForm()
 
-    template = loader.get_template("rentalapp/books.html")
-
-
     context = {'form':form}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'rentalapp/books.html', context)
 
 
 def result(request):
@@ -56,7 +49,6 @@ def result(request):
         form = SearchBooksForm(request.POST)
     else:
         form = SearchBooksForm()
-    template = loader.get_template("rentalapp/result.html")
 
     author_list = Author.objects.filter(
         name__contains=request.POST.get("given_author_name",""), 
@@ -69,4 +61,32 @@ def result(request):
             book_list.append(temp)
 
     context = {'book_list':book_list, 'form':form}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'rentalapp/result.html', context)
+
+
+def book_details(request, book_id):
+    """
+    View which displays description page
+    """
+    book = Book.objects.get(id=book_id)
+    orders = Order.objects.filter(book=book).order_by('-date')
+    
+    context = {'book':book, 'orders':orders}
+    return render(request, 'rentalapp/book_details.html', context)
+
+def reserve_book(request, book_id):
+    """
+    View which displays description page
+    """
+    if request.method == 'POST':
+        b = Book.objects.get(id=book_id)
+        b.is_reserved = True
+        b.save()
+        o = Order(
+            user=request.user, 
+            book=b, 
+            date=timezone.now(), 
+            action_type = Action.objects.get(action='RESERVE')
+            )
+        o.save()
+    return redirect('/')

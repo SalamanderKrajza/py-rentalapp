@@ -1,12 +1,22 @@
 {% extends 'rentalapp/books.html' %}
-{% load by_author %}
 {% block result %}
     {% if book_list %}
         {% for books_of_author in book_list %}
             <h5>{{ books_of_author.0.author }}</h5>
             <ul>
             {% for book in books_of_author %}
-                <li>"{{ book.title }}"</li>
+            <a class="non-colored" href="{% url 'rentalapp:book_details' book_id=book.id %}">
+                <li>
+                "{{ book.title }}"
+                {% if book.is_avaiable %}
+                - book is available
+                {% elif book.is_reserved %}
+                - book is not available and book is book.is_reserved
+                {% else %}
+                - book is not available but can be book.is_reserved
+                {% endif %}
+                </li>
+            </a>
             {% endfor %}
             </ul>  
         {% endfor %}

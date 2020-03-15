@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h4>Book details view</h4>
+    <h6>{{ book }}</h6>
+        <ul>
+        <li>Is avaiable? : {{ book.is_avaiable }}</li>
+        <li>Is reserved? : {{ book.is_reserved }}</li>
+        <br>
+
+        {% if not book.is_reserved %}
+        <form action="{% url 'rentalapp:reserve_book' book_id=book.id %}", method="post">
+                {% csrf_token %}
+                <button type="submit">Reserve book</button>
+        </form>
+        <br>
+        {% endif %}
+
+        <br>
+        {% if user.is_staff %}
+            {% for order in orders %}
+                <li style="position: relative">
+                        {{ order.date|date:'Y-m-d H:i' }} - 
+                        {{ order.action_type }} by {{ order.user.first_name }} {{ order.user.last_name }}
+                </li>
+            {% endfor %}
+        {% endif %}
+        </ul>
+
+{% endblock %}

@@ -120,3 +120,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#Needed to load static files from static outside app folders
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")] 

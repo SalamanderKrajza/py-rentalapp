@@ -1,10 +1,11 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import User, Author, Book, Category, CategoryFilter, Order
+from .models import Author, Book, Category, CategoryFilter, Order, Action
 
-admin.site.register(User)
 admin.site.register(Author)
 admin.site.register(Book)
 admin.site.register(Category)
 admin.site.register(CategoryFilter)
+admin.site.register(Order)
+admin.site.register(Action)
