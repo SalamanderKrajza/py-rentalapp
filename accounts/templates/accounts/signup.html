@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+.helptext{ display: block; margin-bottom:40px}
+</style>
+  <h1>Signup</h1>
+  <form class="site-form" action="{% url 'accounts:signup' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Signup">
+  </form>
+{% endblock %}
