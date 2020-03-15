@@ -3,7 +3,7 @@ from django.template import loader
 
 # Create your views here.
 from django.http import HttpResponse
-from .models import Book
+from .models import Book, Author
 from .forms import SearchBooksForm
 
 
@@ -56,19 +56,17 @@ def result(request):
         form = SearchBooksForm(request.POST)
     else:
         form = SearchBooksForm()
-
     template = loader.get_template("rentalapp/result.html")
 
-    book_list = Book.objects.filter(
-        title__contains=request.POST.get("given_title",""),
-        author__name__contains=request.POST.get("given_author_name",""),
-        author__surname__contains=request.POST.get("given_author_surname","")
-        ).order_by('author__surname', 'author__name', 'title')
+    author_list = Author.objects.filter(
+        name__contains=request.POST.get("given_author_name",""), 
+        surname__contains=request.POST.get("given_author_surname","")
+        )
+    book_list = []
+    for author in author_list:
+        temp = author.book_set.filter(title__contains=request.POST.get("given_title",""))
+        if temp.exists():
+            book_list.append(temp)
 
-    author_list = []
-    for book in book_list:
-        author_list.append(book.author)
-    author_list = list(set(author_list))
-
-    context = {'book_list':book_list, 'author_list':author_list, 'form':form}
+    context = {'book_list':book_list, 'form':form}
     return HttpResponse(template.render(context, request))

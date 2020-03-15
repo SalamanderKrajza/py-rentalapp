@@ -2,15 +2,14 @@
 {% load by_author %}
 {% block result %}
     {% if book_list %}
-        {% for author in author_list %}
-            <h5>{{ author }}</h5>
+        {% for books_of_author in book_list %}
+            <h5>{{ books_of_author.0.author }}</h5>
             <ul>
-            {% for book in book_list|by_author:author %}
+            {% for book in books_of_author %}
                 <li>"{{ book.title }}"</li>
             {% endfor %}
-            </ul>
+            </ul>  
         {% endfor %}
-
     {% else %}
         <p>No books are available.</p>
     {% endif %}
