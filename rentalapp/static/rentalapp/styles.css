@@ -1,0 +1,19 @@
+.navtile{
+    cursor: pointer;
+    color: rgb(82, 82, 82)
+}
+
+
+/* .navtile i{
+    color: rgb(82, 82, 82)
+} */
+
+.navtile:hover i{
+    color: rgb(3,155,229);
+}
+
+.navtile:hover{
+    color: rgb(3,155,229);
+}
+
+

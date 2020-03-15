@@ -1,0 +1,40 @@
+{% extends 'rentalapp/base.html' %}
+{% block content %}
+    <div class="container">
+        <h3 style="text-align: center">How it works?</h3>
+        <div class="row">
+            <a href="http://google.pl">
+                <div class="col s4">
+                    <div class="center navtile">
+                        <i class="large material-icons">find_in_page</i>
+                        <p>Search database</p>
+                        <p class="light center">User can search database for desired book with userform designed for this.</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="col s4">
+                    <div class="center navtile">
+                        <i class="large material-icons">calendar_today</i>
+                        <p>Reserve the book</p>
+                        <p class="light center">If desired book is aviable user can reserve this book.</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="col s4">
+                    <div class="center navtile">
+                        <i class="large material-icons">check_box</i>
+                        <p>Rent reserved book</p>
+                        <p class="light center">After reservation user have 7 days to take reserved book from our library</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+    {% block result %}
+    {% endblock %}
+{% endblock %}

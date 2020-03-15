@@ -1,0 +1,74 @@
+{% extends 'rentalapp/base.html' %}
+{% block content %}
+    <div class="container">
+        <h3 style="text-align: center">What you want to do?</h3>
+        <br />
+        <div class="row">
+            <a href="books">
+                <div class="col s4">
+                    <div class="center navtile">
+                        <i class="large material-icons">library_books</i>
+                        <p>Manage Books/Authors</p>
+                        <p class="light center">Add, modify or remove books or autor in the library database.</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="col s4">
+                    <div class="center navtile">
+                        <i class="large material-icons">bookmarks</i>
+                        <p>Manage categories</p>
+                        <p class="light center">Add/remove/modify categories. Add books to categories.</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="col s4">
+                    <div class="center navtile">
+                        <i class="large material-icons">account_circle</i>
+                        <p>Manage Users</p>
+                        <p class="light center">Modify user informations, assign permissions.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="row">
+            <a href="#">
+                <div class="col s4">
+                    <div class="center navtile">
+                        <i class="large material-icons">search</i>
+                        <p>Search Database</p>
+                        <p class="light center">Donec eget magna porta, aliquam diam sed, volutpat metus</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="col s4">
+                    <div class="center navtile">
+                        <i class="large material-icons">format_list_bulleted</i>
+                        <p>Your reservations/rentals</p>
+                        <p class="light center">Donec eget magna porta, aliquam diam sed, volutpat metus.</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="col s4">
+                    <div class="center navtile">
+                        <i class="large material-icons">tab</i>
+                        <p>Explore categories</p>
+                        <p class="light center">Donec eget magna porta, aliquam diam sed, volutpat metus</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+    {% block result %}
+    {% endblock %}
+    </div>
+{% endblock %}

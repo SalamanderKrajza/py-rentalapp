@@ -1,0 +1,16 @@
+{% extends 'rentalapp/base.html' %}
+{% block content %}
+    <div class="container">
+        <h3 style="text-align: center">Search for the book</h3>
+        <br />
+
+        <form action="/books/result/" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit">
+        </form>
+
+        {% block result %}
+        {% endblock %}
+    </div>
+{% endblock %}

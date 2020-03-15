@@ -1,0 +1,18 @@
+{% extends 'rentalapp/books.html' %}
+{% load by_author %}
+{% block result %}
+    {% if book_list %}
+        {% for author in author_list %}
+            <h5>{{ author }}</h5>
+            <ul>
+            {% for book in book_list|by_author:author %}
+                <li>"{{ book.title }}"</li>
+            {% endfor %}
+            </ul>
+        {% endfor %}
+
+    {% else %}
+        <p>No books are available.</p>
+    {% endif %}
+
+{% endblock result %}
