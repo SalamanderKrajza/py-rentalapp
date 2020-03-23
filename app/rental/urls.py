@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='index'),
     path('', include('rentalapp.urls')),
     path('', include('accounts.urls')),
 ]
+
+#Needed in case we're using gunicorn instead of runserver
+#It is not reccomended to keep this while on development. Instead use server like nginx
+#Informations from https://stackoverflow.com/questions/12800862/how-to-make-django-serve-static-files-with-gunicorn
+urlpatterns += staticfiles_urlpatterns()
