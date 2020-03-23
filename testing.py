@@ -34,3 +34,57 @@ from rentalapp.models import User, Author, Book, CategoryFilter, Category, Order
 #     if temp.exists():
 #         book_list.append(temp)
 
+
+
+# class TwojaKlasa():
+#     def __init__(self, name):
+#         print(f'Twoja klasa jest tutaj, nazywa się {name}')
+#         self.WypiszDupa()
+
+#     def WypiszDupa(self):
+#         print('dupa')
+
+# class MojaKlasa(TwojaKlasa):
+#     def __init__(self):
+#         print('a to jest moje klasa')
+#         super().__init__('papuga')
+
+#     def mojametoda(self):
+#         print('hehe')
+
+# #twoja = TwojaKlasa()
+# moja = MojaKlasa()
+# MojaKlasa().mojametoda()
+
+
+# def testfunc(arg1, *args, **kwargs):
+#     print(f'Arg1 = {arg1}\n\n')
+#     for arg in args:
+#         print(f'{arg}')
+    
+#     print('\n\n')
+
+#     for key, value in kwargs.items():
+#         print(f'Key is: {key}, Value is: {value}')
+
+class MojaKlasa():
+    def __init__(self):
+        self._test = 'test'
+
+    @property
+    def test(self):
+        return self._test
+
+    @test.setter
+    def test(self, somevalue):
+        self._test = somevalue
+
+
+def bubblesort(mytab):
+    temp = len(mytab)-1
+
+    for x in range(temp):
+        for y in range(temp-x):
+            if mytab[y]>mytab[y+1]:
+                mytab[y], mytab[y+1] = mytab[y+1], mytab[y]
+    print(mytab)
