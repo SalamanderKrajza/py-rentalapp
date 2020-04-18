@@ -12,7 +12,10 @@ class OrderInline(admin.TabularInline):
     model = Order
 
 class ActionAdmin(admin.ModelAdmin):
-    list_display = ('action', 'action')
+    list_display = ('action', 'count_actions')
+
+    def count_actions(self, obj):
+        return obj.
     inlines = [
         OrderInline,
     ]
